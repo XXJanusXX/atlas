@@ -45,7 +45,7 @@ class Portfolio:
         if fee < 0:
             raise ValueError("Fee cannot be negative.")
 
-        base_currency, quote_currency = self._split_instrument(order.instrument)
+        _, quote_currency = self._split_instrument(order.instrument)
         if quote_currency != self.account_currency:
             raise ValueError(
                 "Instrument quote currency must match the portfolio account currency."
@@ -68,6 +68,8 @@ class Portfolio:
             self.positions[order.instrument] = position
             self.cash -= total_cost
         else:
+            if fee > notional:
+                raise ValueError("Sell fee cannot exceed sale proceeds.")
             if existing is None or order.units > existing.units:
                 raise ValueError("Paper sell exceeds the available long position.")
             self.cash += notional - fee

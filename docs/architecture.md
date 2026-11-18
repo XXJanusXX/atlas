@@ -11,6 +11,13 @@
 ## Data flow
 Market data -> normalization -> strategy -> optional AI review -> risk gate -> paper broker -> ledger -> analytics.
 
+## Time handling
+All persisted event timestamps are timezone-aware UTC. The timezone service resolves country
+and capital references to IANA timezone identifiers, supports multiple zones for countries
+that span timezones, and converts UTC timestamps for local presentation and scheduling.
+Market-session rules use the timezone of the relevant financial centre or provider rather
+than assuming the national capital is the trading venue. Naive timestamps are rejected.
+
 ## Broker decision
 Provider selection is deferred. Evaluate practice/demo environments, jurisdictional eligibility, symbol coverage, market-data rights, API availability, costs and operational complexity before selection.
 

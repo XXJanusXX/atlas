@@ -10,6 +10,7 @@ AI-assisted quantitative Forex research and paper-trading platform.
 - Broker/provider: undecided; adapters remain provider-neutral
 - AI: hybrid multi-model analysis, advisory only
 - Execution: internal paper broker only
+- Time handling: UTC storage with country/capital-based IANA timezone conversion and multi-zone country support
 
 ## Safety boundary
 The strategy and AI layers can propose trades. A deterministic risk engine validates them. Only the internal paper broker can simulate orders. Do not add live credentials or live execution code to this release.
@@ -26,6 +27,9 @@ cp .env.example .env
 pytest
 ruff check .
 ```
+
+## Timezone support
+See [Country and Capital Timezones](docs/timezones.md) for supported country/capital lookups, IANA identifiers, daylight-saving behavior and UTC persistence policy.
 
 ## Initial engineering priorities
 1. Provider-neutral market-data contracts and instrument discovery.

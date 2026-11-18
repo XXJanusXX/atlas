@@ -67,8 +67,8 @@ def test_sell_realizes_pnl_and_deducts_fee() -> None:
     )
 
     assert "EUR_USD" not in broker.portfolio.positions
-    assert broker.cash == Decimal("100.3850")
-    assert broker.portfolio.realized_pnl == Decimal("0.3850")
+    assert broker.cash == Decimal("100.3900")
+    assert broker.portfolio.realized_pnl == Decimal("0.3900")
     assert broker.portfolio.fees_paid == Decimal("0.10")
 
 

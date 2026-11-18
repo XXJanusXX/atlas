@@ -7,6 +7,13 @@ account:
   base_currency: USD
   initial_equity: 100.00
   leverage_enabled: false
+time:
+  storage_timezone: UTC
+  country_timezone_resolution: capital
+  timezone_database: IANA
+  reject_naive_timestamps: true
+  default_display_country: SG
+  allow_country_multi_timezone: true
 universe:
   coverage: all_provider_supported
   groups: [major, minor, exotic]

@@ -163,3 +163,17 @@ def test_duplicate_order_id_is_rejected() -> None:
         broker.execute_market_order(order, _quote())
 
     assert len(broker.orders) == 1
+
+
+def test_entry_fee_is_included_in_average_cost_and_realized_pnl() -> None:
+    broker = PaperBroker(Decimal("100"))
+    broker.execute_market_order(
+        _order("buy-1", Side.BUY, "50"), _quote(), fee=Decimal("0.10")
+    )
+    position = broker.portfolio.positions["EUR_USD"]
+    assert position.average_entry_price == Decimal("1.1022")
+
+    broker.execute_market_order(
+        _order("sell-1", Side.SELL, "50"), _quote("1.1100", "1.1102")
+    )
+    assert broker.portfolio.realized_pnl == Decimal("0.3900")

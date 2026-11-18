@@ -22,6 +22,8 @@ class PaperBroker:
         self, order: PaperOrder, quote: Quote, slippage: Decimal
     ) -> tuple[PaperOrder, Decimal]:
         quote.validate_market()
+        if quote.instrument != order.instrument:
+            raise ValueError("Quote instrument must match the paper order instrument.")
         if slippage < 0:
             raise ValueError("Slippage cannot be negative.")
         if order.units <= 0:

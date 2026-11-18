@@ -22,42 +22,168 @@ class CountryTimezone:
 
 # Curated initial coverage for major FX economies and common trading jurisdictions.
 # Multi-zone countries list their capital zone first, followed by additional zones.
-_COUNTRIES: tuple[ CountryTimezone, ... ] = (
-    CountryTimezone("AE", "United Arab Emirates", "Abu Dhabi", "Asia/Dubai", ("Asia/Dubai",)),
-    CountryTimezone("AU", "Australia", "Canberra", "Australia/Sydney", ("Australia/Sydney", "Australia/Melbourne", "Australia/Brisbane", "Australia/Adelaide", "Australia/Perth", "Australia/Darwin", "Australia/Hobart")),
-    CountryTimezone("BR", "Brazil", "Brasilia", "America/Sao_Paulo", ("America/Sao_Paulo", "America/Manaus", "America/Rio_Branco", "America/Noronha")),
-    CountryTimezone("CA", "Canada", "Ottawa", "America/Toronto", ("America/Toronto", "America/Vancouver", "America/Edmonton", "America/Winnipeg", "America/Halifax", "America/St_Johns")),
-    CountryTimezone("CH", "Switzerland", "Bern", "Europe/Zurich", ("Europe/Zurich",)),
+_COUNTRIES: tuple[CountryTimezone, ...] = (
+    CountryTimezone(
+        "AE", "United Arab Emirates", "Abu Dhabi", "Asia/Dubai", ("Asia/Dubai",)
+    ),
+    CountryTimezone(
+        "AU",
+        "Australia",
+        "Canberra",
+        "Australia/Sydney",
+        (
+            "Australia/Sydney",
+            "Australia/Melbourne",
+            "Australia/Brisbane",
+            "Australia/Adelaide",
+            "Australia/Perth",
+            "Australia/Darwin",
+            "Australia/Hobart",
+        ),
+    ),
+    CountryTimezone(
+        "BR",
+        "Brazil",
+        "Brasilia",
+        "America/Sao_Paulo",
+        (
+            "America/Sao_Paulo",
+            "America/Manaus",
+            "America/Rio_Branco",
+            "America/Noronha",
+        ),
+    ),
+    CountryTimezone(
+        "CA",
+        "Canada",
+        "Ottawa",
+        "America/Toronto",
+        (
+            "America/Toronto",
+            "America/Vancouver",
+            "America/Edmonton",
+            "America/Winnipeg",
+            "America/Halifax",
+            "America/St_Johns",
+        ),
+    ),
+    CountryTimezone(
+        "CH", "Switzerland", "Bern", "Europe/Zurich", ("Europe/Zurich",)
+    ),
     CountryTimezone("CN", "China", "Beijing", "Asia/Shanghai", ("Asia/Shanghai",)),
     CountryTimezone("CZ", "Czechia", "Prague", "Europe/Prague", ("Europe/Prague",)),
     CountryTimezone("DE", "Germany", "Berlin", "Europe/Berlin", ("Europe/Berlin",)),
-    CountryTimezone("DK", "Denmark", "Copenhagen", "Europe/Copenhagen", ("Europe/Copenhagen",)),
+    CountryTimezone(
+        "DK", "Denmark", "Copenhagen", "Europe/Copenhagen", ("Europe/Copenhagen",)
+    ),
     CountryTimezone("EG", "Egypt", "Cairo", "Africa/Cairo", ("Africa/Cairo",)),
-    CountryTimezone("ES", "Spain", "Madrid", "Europe/Madrid", ("Europe/Madrid", "Atlantic/Canary")),
+    CountryTimezone(
+        "ES", "Spain", "Madrid", "Europe/Madrid", ("Europe/Madrid", "Atlantic/Canary")
+    ),
     CountryTimezone("FR", "France", "Paris", "Europe/Paris", ("Europe/Paris",)),
-    CountryTimezone("GB", "United Kingdom", "London", "Europe/London", ("Europe/London",)),
-    CountryTimezone("HK", "Hong Kong", "Hong Kong", "Asia/Hong_Kong", ("Asia/Hong_Kong",)),
-    CountryTimezone("HU", "Hungary", "Budapest", "Europe/Budapest", ("Europe/Budapest",)),
-    CountryTimezone("ID", "Indonesia", "Jakarta", "Asia/Jakarta", ("Asia/Jakarta", "Asia/Makassar", "Asia/Jayapura")),
-    CountryTimezone("IL", "Israel", "Jerusalem", "Asia/Jerusalem", ("Asia/Jerusalem",)),
+    CountryTimezone(
+        "GB", "United Kingdom", "London", "Europe/London", ("Europe/London",)
+    ),
+    CountryTimezone(
+        "HK", "Hong Kong", "Hong Kong", "Asia/Hong_Kong", ("Asia/Hong_Kong",)
+    ),
+    CountryTimezone(
+        "HU", "Hungary", "Budapest", "Europe/Budapest", ("Europe/Budapest",)
+    ),
+    CountryTimezone(
+        "ID",
+        "Indonesia",
+        "Jakarta",
+        "Asia/Jakarta",
+        ("Asia/Jakarta", "Asia/Makassar", "Asia/Jayapura"),
+    ),
+    CountryTimezone(
+        "IL", "Israel", "Jerusalem", "Asia/Jerusalem", ("Asia/Jerusalem",)
+    ),
     CountryTimezone("IN", "India", "New Delhi", "Asia/Kolkata", ("Asia/Kolkata",)),
     CountryTimezone("JP", "Japan", "Tokyo", "Asia/Tokyo", ("Asia/Tokyo",)),
-    CountryTimezone("KR", "South Korea", "Seoul", "Asia/Seoul", ("Asia/Seoul",)),
-    CountryTimezone("MX", "Mexico", "Mexico City", "America/Mexico_City", ("America/Mexico_City", "America/Tijuana", "America/Chihuahua", "America/Cancun")),
-    CountryTimezone("MY", "Malaysia", "Kuala Lumpur", "Asia/Kuala_Lumpur", ("Asia/Kuala_Lumpur",)),
+    CountryTimezone(
+        "KR", "South Korea", "Seoul", "Asia/Seoul", ("Asia/Seoul",)
+    ),
+    CountryTimezone(
+        "MX",
+        "Mexico",
+        "Mexico City",
+        "America/Mexico_City",
+        (
+            "America/Mexico_City",
+            "America/Tijuana",
+            "America/Chihuahua",
+            "America/Cancun",
+        ),
+    ),
+    CountryTimezone(
+        "MY", "Malaysia", "Kuala Lumpur", "Asia/Kuala_Lumpur", ("Asia/Kuala_Lumpur",)
+    ),
     CountryTimezone("NO", "Norway", "Oslo", "Europe/Oslo", ("Europe/Oslo",)),
-    CountryTimezone("NZ", "New Zealand", "Wellington", "Pacific/Auckland", ("Pacific/Auckland", "Pacific/Chatham")),
-    CountryTimezone("PH", "Philippines", "Manila", "Asia/Manila", ("Asia/Manila",)),
+    CountryTimezone(
+        "NZ",
+        "New Zealand",
+        "Wellington",
+        "Pacific/Auckland",
+        ("Pacific/Auckland", "Pacific/Chatham"),
+    ),
+    CountryTimezone(
+        "PH", "Philippines", "Manila", "Asia/Manila", ("Asia/Manila",)
+    ),
     CountryTimezone("PL", "Poland", "Warsaw", "Europe/Warsaw", ("Europe/Warsaw",)),
-    CountryTimezone("RU", "Russia", "Moscow", "Europe/Moscow", ("Europe/Moscow", "Europe/Kaliningrad", "Asia/Yekaterinburg", "Asia/Novosibirsk", "Asia/Irkutsk", "Asia/Vladivostok", "Asia/Kamchatka")),
-    CountryTimezone("SA", "Saudi Arabia", "Riyadh", "Asia/Riyadh", ("Asia/Riyadh",)),
-    CountryTimezone("SE", "Sweden", "Stockholm", "Europe/Stockholm", ("Europe/Stockholm",)),
-    CountryTimezone("SG", "Singapore", "Singapore", "Asia/Singapore", ("Asia/Singapore",)),
-    CountryTimezone("TH", "Thailand", "Bangkok", "Asia/Bangkok", ("Asia/Bangkok",)),
-    CountryTimezone("TR", "Türkiye", "Ankara", "Europe/Istanbul", ("Europe/Istanbul",)),
+    CountryTimezone(
+        "RU",
+        "Russia",
+        "Moscow",
+        "Europe/Moscow",
+        (
+            "Europe/Moscow",
+            "Europe/Kaliningrad",
+            "Asia/Yekaterinburg",
+            "Asia/Novosibirsk",
+            "Asia/Irkutsk",
+            "Asia/Vladivostok",
+            "Asia/Kamchatka",
+        ),
+    ),
+    CountryTimezone(
+        "SA", "Saudi Arabia", "Riyadh", "Asia/Riyadh", ("Asia/Riyadh",)
+    ),
+    CountryTimezone(
+        "SE", "Sweden", "Stockholm", "Europe/Stockholm", ("Europe/Stockholm",)
+    ),
+    CountryTimezone(
+        "SG", "Singapore", "Singapore", "Asia/Singapore", ("Asia/Singapore",)
+    ),
+    CountryTimezone(
+        "TH", "Thailand", "Bangkok", "Asia/Bangkok", ("Asia/Bangkok",)
+    ),
+    CountryTimezone(
+        "TR", "Türkiye", "Ankara", "Europe/Istanbul", ("Europe/Istanbul",)
+    ),
     CountryTimezone("TW", "Taiwan", "Taipei", "Asia/Taipei", ("Asia/Taipei",)),
-    CountryTimezone("US", "United States", "Washington, D.C.", "America/New_York", ("America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles", "America/Anchorage", "Pacific/Honolulu")),
-    CountryTimezone("ZA", "South Africa", "Pretoria", "Africa/Johannesburg", ("Africa/Johannesburg",)),
+    CountryTimezone(
+        "US",
+        "United States",
+        "Washington, D.C.",
+        "America/New_York",
+        (
+            "America/New_York",
+            "America/Chicago",
+            "America/Denver",
+            "America/Los_Angeles",
+            "America/Anchorage",
+            "Pacific/Honolulu",
+        ),
+    ),
+    CountryTimezone(
+        "ZA",
+        "South Africa",
+        "Pretoria",
+        "Africa/Johannesburg",
+        ("Africa/Johannesburg",),
+    ),
 )
 
 _COUNTRY_INDEX = {

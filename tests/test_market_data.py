@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 
 import pytest
@@ -12,7 +12,7 @@ from atlas.market_data.validation import (
 
 
 def test_stale_quote_is_rejected() -> None:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     quote = Quote(
         instrument="EUR_USD", bid=Decimal("1.1"), ask=Decimal("1.1002"),
         timestamp=now - timedelta(seconds=20),
@@ -22,7 +22,7 @@ def test_stale_quote_is_rejected() -> None:
 
 
 def test_fresh_quote_is_accepted() -> None:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     quote = Quote(
         instrument="EUR_USD", bid=Decimal("1.1"), ask=Decimal("1.1002"),
         timestamp=now,

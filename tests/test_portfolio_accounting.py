@@ -177,3 +177,31 @@ def test_entry_fee_is_included_in_average_cost_and_realized_pnl() -> None:
         _order("sell-1", Side.SELL, "50"), _quote("1.1100", "1.1102")
     )
     assert broker.portfolio.realized_pnl == Decimal("0.3900")
+
+
+def test_order_rejects_quote_for_different_instrument() -> None:
+    broker = PaperBroker(Decimal("100"))
+    with pytest.raises(ValueError, match="Quote instrument"):
+        broker.execute_market_order(
+            _order("buy-1", Side.BUY, "10", "EUR_USD"),
+            _quote(instrument="GBP_USD"),
+        )
+
+    assert broker.cash == Decimal("100")
+    assert broker.orders == []
+
+
+def test_sell_fee_cannot_exceed_sale_proceeds() -> None:
+    broker = PaperBroker(Decimal("100"))
+    broker.execute_market_order(_order("buy-1", Side.BUY, "10"), _quote())
+
+    with pytest.raises(ValueError, match="fee cannot exceed"):
+        broker.execute_market_order(
+            _order("sell-1", Side.SELL, "10"),
+            _quote(),
+            fee=Decimal("20"),
+        )
+
+    assert broker.cash == Decimal("88.9980")
+    assert broker.portfolio.positions["EUR_USD"].units == Decimal("10")
+    assert len(broker.orders) == 1

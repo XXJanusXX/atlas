@@ -11,7 +11,7 @@ def test_risk_engine_fails_closed_without_sizing_metadata() -> None:
         instrument="EUR_USD", side=Side.BUY,
         entry_reference=Decimal("1.1000"), stop_loss=Decimal("1.0950"),
         rationale="Test proposal", strategy_id="test",
-        created_at=datetime.now(timezone.utc),
+        created_at=datetime.now(UTC),
     )
     result = RiskEngine(AccountConfig(), RiskConfig()).pre_trade_check(proposal)
     assert not result.approved

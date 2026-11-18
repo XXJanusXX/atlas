@@ -1,0 +1,36 @@
+project:
+  name: ATLAS
+  version: 0.1.0
+  environment: development
+  execution_mode: paper
+account:
+  base_currency: USD
+  initial_equity: 100.00
+  leverage_enabled: false
+universe:
+  coverage: all_provider_supported
+  groups: [major, minor, exotic]
+  require_instrument_metadata: true
+  require_bid_ask: true
+  reject_stale_quotes: true
+  max_quote_age_seconds: 10
+risk:
+  risk_per_trade_pct: 0.25
+  max_total_open_risk_pct: 0.75
+  max_daily_loss_pct: 1.00
+  max_weekly_loss_pct: 2.00
+  max_open_positions: 3
+  reject_if_minimum_size_breaches_risk: true
+simulation:
+  fill_model: bid_ask_with_configured_slippage
+  include_spread: true
+  include_commission: true
+  include_swap_rollover: true
+  reject_orders_without_stop_loss: true
+  allow_partial_fills: false
+ai:
+  mode: advisory_only
+  providers: [grok, openai]
+  require_structured_output: true
+  require_deterministic_validation: true
+  allow_ai_to_submit_orders: false

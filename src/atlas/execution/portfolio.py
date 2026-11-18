@@ -63,7 +63,7 @@ class Portfolio:
                 existing.units * existing.average_entry_price if existing else Decimal("0")
             )
             new_units = previous_units + order.units
-            average_price = (previous_cost + notional) / new_units
+            average_price = (previous_cost + notional + fee) / new_units
             position = Position(order.instrument, new_units, average_price)
             self.positions[order.instrument] = position
             self.cash -= total_cost

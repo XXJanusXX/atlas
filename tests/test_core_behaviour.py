@@ -265,3 +265,9 @@ def test_ledger_initialization_is_idempotent(tmp_path) -> None:
     ).fetchone()[0]
     assert count == 1
     second.close()
+
+
+def test_runtime_config_rejects_live_execution_mode() -> None:
+    RuntimeConfig(execution_mode="paper").validate_safety_boundary()
+    with pytest.raises(ValueError, match="paper mode only"):
+        RuntimeConfig(execution_mode="live").validate_safety_boundary()

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from atlas.domain.models import Instrument, Quote
 
@@ -15,7 +15,7 @@ def validate_quote(
     future_tolerance: timedelta = timedelta(seconds=2),
 ) -> Quote:
     quote.validate_market()
-    current = now or datetime.now(timezone.utc)
+    current = now or datetime.now(UTC)
     if quote.timestamp.tzinfo is None or current.tzinfo is None:
         raise MarketDataValidationError("Quote and reference timestamps must be timezone-aware.")
     age = current - quote.timestamp
